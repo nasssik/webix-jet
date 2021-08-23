@@ -3,3 +3,7 @@ codebase/
 node_modules/
 *.log
 dist/
+jet-course-backend/config.yml
+jet-course-backend/db.sqlite
+jet-course-backend/demo-back
+jet-course-backend/demo-back.exe
