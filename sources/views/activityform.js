@@ -1,8 +1,8 @@
 import {JetView} from "webix-jet";
 
-import contacts from "../models/contacts";
 import activity from "../models/activity";
 import activityType from "../models/activityType";
+import contacts from "../models/contacts";
 
 export default class ActivityForm extends JetView {
 	config() {

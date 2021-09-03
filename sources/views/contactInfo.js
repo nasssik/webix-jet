@@ -1,4 +1,3 @@
-/* eslint-disable linebreak-style */
 import {JetView} from "webix-jet";
 
 import contacts from "../models/contacts";
@@ -14,7 +13,6 @@ export default class ContactInfoView extends JetView {
 							view: "template",
 							autoheight: true,
 							template: "#FirstName# #LastName#",
-							align: "left",
 							css: "nameStyle",
 							localId: "name"
 						},

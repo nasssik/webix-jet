@@ -1,4 +1,3 @@
-/* eslint-disable linebreak-style */
 import {JetView} from "webix-jet";
 
 import activity from "../models/activity";

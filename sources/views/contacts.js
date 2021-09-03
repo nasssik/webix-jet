@@ -1,4 +1,3 @@
-/* eslint-disable linebreak-style */
 import {JetView} from "webix-jet";
 
 import contacts from "../models/contacts";
