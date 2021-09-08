@@ -9,6 +9,7 @@ export default class TopView extends JetView {
 			css: "webix_header pageTitle"
 		};
 
+
 		let menu = {
 			view: "menu",
 			id: "top:menu",
@@ -29,6 +30,7 @@ export default class TopView extends JetView {
 				}
 			}
 		};
+
 		return {
 			rows: [
 				header,

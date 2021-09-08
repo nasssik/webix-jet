@@ -51,7 +51,7 @@ export default class ActivityView extends JetView {
 						content: "selectFilter"
 					}],
 					options: activityType,
-					width: 300,
+					fillspace: true,
 					sort: "string"
 				},
 				{
@@ -60,7 +60,7 @@ export default class ActivityView extends JetView {
 					header: ["Due date", {
 						content: "dateRangeFilter"
 					}],
-					width: 300,
+					fillspace: true,
 					sort: "date"
 				},
 				{
@@ -78,7 +78,7 @@ export default class ActivityView extends JetView {
 						content: "selectFilter"
 					}],
 					options: contacts,
-					width: 300,
+					fillspace: true,
 					sort: "string"
 				},
 				{

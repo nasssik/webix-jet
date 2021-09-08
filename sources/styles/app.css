@@ -128,3 +128,14 @@
     flex-direction: column;
     justify-items: flex-start;
 }
+
+.wxi-trash, .wxi-pencil {
+    float: right;
+    margin-top:9px;
+    }
+.wxi-pencil:hover {
+    color: rgb(7, 214, 7);
+}
+.wxi-trash:hover {
+    color: red;
+}

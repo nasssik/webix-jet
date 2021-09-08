@@ -1,5 +1,5 @@
-const strFormatting = webix.Date.strToDate("%Y-%m-%d %H:%i");
-const dateFormatting = webix.Date.strToDate("%Y-%m-%d %H:%i");
+const strFormatting = webix.Date.strToDate("%d-%m-%Y  %H:%i");
+const dateFormatting = webix.Date.dateToStr("%Y-%m-%d");
 const formatTime = webix.Date.dateToStr("%H:%i");
 
 const activity = new webix.DataCollection({

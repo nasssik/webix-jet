@@ -14,8 +14,12 @@ module.exports = {
 		})
 	],
 	globals: {
-		webix: "readonly",
-		require: "readonly"
+		webix: true,
+		scheduler: true,
+		APPNAME: true,
+		VERSION: true,
+		PRODUCTION: true,
+		BUILD_AS_MODULE: true
 	},
 	env: {
 		browser: true,

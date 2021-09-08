@@ -28,7 +28,6 @@ export default class ActivityForm extends JetView {
 								view: "textarea",
 								name: "Details",
 								label: "Details",
-								labelAlign: "right",
 								invalidMessage: "Please write details"
 							},
 							{
@@ -54,6 +53,7 @@ export default class ActivityForm extends JetView {
 										name: "DueNewDate",
 										invalidMessage: "Please select a date"
 									},
+									{width: 50},
 									{
 										view: "datepicker",
 										label: "Time",
@@ -88,7 +88,8 @@ export default class ActivityForm extends JetView {
 											}
 											this.closeForm();
 										}
-									}
+									},
+									css: "webix_primary"
 								},
 								{
 									view: "button",
