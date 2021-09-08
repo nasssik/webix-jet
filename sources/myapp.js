@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import {JetApp, EmptyRouter, HashRouter} from "webix-jet";
 import "./styles/app.css";
 
@@ -9,7 +8,7 @@ export default class MyApp extends JetApp {
 			version: VERSION,
 			router: BUILD_AS_MODULE ? EmptyRouter : HashRouter,
 			debug: !PRODUCTION,
-			start: "/top/start"
+			start: "/top/contacts"
 		};
 
 		super({...defaults, ...config});
