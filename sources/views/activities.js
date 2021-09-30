@@ -82,11 +82,11 @@ export default class ActivityView extends JetView {
 					sort: "string"
 				},
 				{
-					template: "<span class='webix_icon wxi-pencil editBtn'></span>",
+					template: "<span class='webix_icon wxi-pencil act editBtn'></span>",
 					width: 40
 				},
 				{
-					template: "<span class='webix_icon wxi-trash removeBtn'></span>",
+					template: "<span class='webix_icon wxi-trash act removeBtn'></span>",
 					width: 40
 				}
 				],
@@ -120,6 +120,7 @@ export default class ActivityView extends JetView {
 		]).then(
 			() => {
 				this.$$("contactsData").sync(activity);
+				activity.data.filter();
 			}
 		);
 	}

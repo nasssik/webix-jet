@@ -129,7 +129,7 @@
     justify-items: flex-start;
 }
 
-.wxi-trash, .wxi-pencil {
+.act.wxi-trash, .act.wxi-pencil {
     float: right;
     margin-top:9px;
     }

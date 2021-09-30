@@ -2,6 +2,8 @@ import {JetView} from "webix-jet";
 
 import contacts from "../models/contacts";
 import statuses from "../models/statuses";
+import TabbarActivityFiles from "./tabbaractivityfiles";
+
 
 export default class ContactInfoView extends JetView {
 	config() {
@@ -23,7 +25,19 @@ export default class ContactInfoView extends JetView {
 							icon: "wxi-trash",
 							label: "Delete",
 							autowidth: true,
-							click: () => {}
+							click: () => {
+								let id = this.getParam("id", true);
+								webix.confirm({
+									text: "Do you still want to continue?",
+									callback: (result) => {
+										if (result) {
+											contacts.remove(id);
+											this.show("/top/contacts/contactInfo");
+										}
+									}
+								});
+								return false;
+							}
 						},
 						{
 							view: "button",
@@ -32,19 +46,20 @@ export default class ContactInfoView extends JetView {
 							icon: "wxi-pencil",
 							label: "Edit",
 							autowidth: true,
-							click: () => {}
+							click: () => {
+								this.app.callEvent("showContactForm", ["Edit"]);
+							}
 						}
 					]
 				},
 				{
 					view: "template",
-					autoheight: true,
 					template: this.getInfo,
 					borderless: true,
 					css: "contact-info",
 					localId: "infoContact"
 				},
-				{}
+				TabbarActivityFiles
 			]
 		};
 	}
@@ -55,7 +70,7 @@ export default class ContactInfoView extends JetView {
 			contacts.waitData,
 			statuses.waitData
 		]).then(() => {
-			const id = this.getParam("id");
+			const id = this.getParam("id", true);
 			if (id && contacts.exists(id)) {
 				const values = webix.copy(contacts.getItem(id));
 				values.statusStr = statuses.getItem(values.StatusID).Value;
@@ -66,10 +81,12 @@ export default class ContactInfoView extends JetView {
 	}
 
 	getInfo(obj) {
+		const format = webix.i18n.longDateFormatStr;
+
 		return `
 		<div class="tempale">
 		<div class="сolumn">
-		<img class=img src="${obj.Photo || "https://image.flaticon.com/icons/png/512/149/149071.png"}"/>
+		<img class=img src="${obj.Photo || "https://img.lovepik.com/photo/40002/7350.jpg_wh860.jpg"}"/>
 		<span class="status">${obj.statusStr || ""}</span>
 		</div>
 		<div class="сolumn">
@@ -79,7 +96,7 @@ export default class ContactInfoView extends JetView {
 		<div class="line"><span class="mdi mdi-briefcase item"></span><span class="item">${obj.Company || ""}</span></div>
 		</div>
 		<div class="сolumn">
-		<div class="line"><span class="webix_icon mdi mdi-calendar item"></span><span class="item">${obj.Birthday || ""}</span></div>
+		<div class="line"><span class="webix_icon mdi mdi-calendar item"></span><span class="item">${format(obj.newBirthday) || ""}</span></div>
 		<div class="line"><span class="mdi mdi-map-marker item></span><span class="item">${obj.Address || ""}</span></div>
 		</div>
 		</div>`;
