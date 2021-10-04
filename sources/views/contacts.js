@@ -1,7 +1,6 @@
 import {JetView} from "webix-jet";
 
 import contacts from "../models/contacts";
-// import ContactInfoView from "./contactInfo";
 
 
 export default class ContactView extends JetView {

@@ -2,6 +2,8 @@ import {JetView} from "webix-jet";
 
 import contacts from "../models/contacts";
 import statuses from "../models/statuses";
+import activity from "../models/activity";
+import records from "../models/records";
 import TabbarActivityFiles from "./tabbaractivityfiles";
 
 
@@ -31,6 +33,19 @@ export default class ContactInfoView extends JetView {
 									text: "Do you still want to continue?",
 									callback: (result) => {
 										if (result) {
+											const filesActivity = activity.find(
+												obj => obj.ContactID.toString() === id.toString()
+											);
+											filesActivity.forEach((act) => {
+												activity.remove(act.id);
+											});
+											const filesRecords = records.find(
+												obj => obj.ContactID.toString() === id.toString()
+											);
+											filesRecords.forEach((act) => {
+												records.remove(act.id);
+											});
+
 											contacts.remove(id);
 											this.show("/top/contacts/contactInfo");
 										}
@@ -80,6 +95,7 @@ export default class ContactInfoView extends JetView {
 		});
 	}
 
+	
 	getInfo(obj) {
 		const format = webix.i18n.longDateFormatStr;
 
