@@ -109,13 +109,16 @@ export default class ActivityForm extends JetView {
 		};
 	}
 
-	showForm(data, mode) {
+	showForm(data, mode, dis) {
 		this.getRoot().show();
 		if (data) {
 			this.$$("form").setValues(data);
 		}
 		if (mode) {
 			this.$$("headForm").setValue(`${mode} activity`);
+			if (dis) {
+				this.$$("ContactID").disable();
+			}
 		}
 	}
 

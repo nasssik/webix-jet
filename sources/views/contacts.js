@@ -1,7 +1,6 @@
 import {JetView} from "webix-jet";
 
 import contacts from "../models/contacts";
-import ContactInfoView from "./contactInfo";
 
 
 export default class ContactView extends JetView {
@@ -9,26 +8,47 @@ export default class ContactView extends JetView {
 		return {
 			cols: [
 				{
-					rows: [
-						{
-							view: "list",
-							localId: "contactList",
-							width: 300,
-							css: "webix_shadow_medium",
-							select: true,
-							template: this.getUser,
-							type: {
-								height: 60
-							},
-							on: {
-								onAfterSelect: (id) => {
-									this.setParam("id", id, true);
-								}
+					rows: [{
+						view: "text",
+						localId: "listInput",
+						placeholder: "Type something here",
+						on: {
+							onTimedKeyPress: () => {
+								let valueInput = this.$$("listInput").getValue().toLowerCase();
+								this.$$("contactList").filter(obj => obj.value.toLowerCase().indexOf(valueInput) !== -1 ||
+									obj.Job.toLowerCase().indexOf(valueInput) !== -1);
 							}
 						}
+					},
+					{
+						view: "list",
+						localId: "contactList",
+						width: 300,
+						css: "webix_shadow_medium",
+						select: true,
+						template: this.getUser,
+						type: {
+							height: 60
+						},
+						on: {
+							onAfterSelect: (id) => {
+								this.setParam("id", id, true);
+							}
+						}
+					},
+					{
+						view: "button",
+						type: "icon",
+						css: "webix_primary",
+						icon: "wxi-plus",
+						label: "Add contact",
+						click: () => {
+							this.app.callEvent("showContactForm", ["Add"]);
+						}
+					}
 					]
 				},
-				ContactInfoView
+				{$subview: true}
 			]
 		};
 	}
@@ -37,6 +57,21 @@ export default class ContactView extends JetView {
 	init() {
 		contacts.waitData.then(() => {
 			this.$$("contactList").sync(contacts);
+			this.show("/top/contacts/contactInfo").then();
+		});
+
+		this.on(this.app, "showContactInfoView", (id) => {
+			const list = this.$$("contactList");
+			this.show(`/top/contacts?id=${id}/contactInfo`);
+			if (!list.isEnabled()) {
+				list.enable();
+			}
+		});
+		this.on(this.app, "showContactForm", (mode) => {
+			this.show(`contactform?mode=${mode}`);
+			if (mode === "Add") {
+				this.$$("contactList").disable();
+			}
 		});
 	}
 
